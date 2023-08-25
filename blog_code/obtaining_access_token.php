@@ -8,12 +8,12 @@
     $creds = array(
         'app_id' => FACEBOOK_APP_ID,
         'app_secret' => FACEBOOK_APP_SECRET,
-        'default_graph_version' => 'v3.2',
+        'default_graph_version' => 'v15.0',
         'persistent_data_handler' => 'session'
     );
 
     // create facebook object
-    $facebook = new Facebook\Facebook( $creds );
+    $facebook = new \JanuSoftware\Facebook\Facebook( $creds );
 
     // helper
     $helper = $facebook->getRedirectLoginHelper();
@@ -24,16 +24,16 @@
     if ( isset( $_GET['code'] ) ) { // get access token
         try {
             $accessToken = $helper->getAccessToken();
-        } catch ( Facebook\Exceptions\FacebookResponseException $e ) { // graph error
-            echo 'Graph returned an error ' . $e->getMessage;
-        } catch ( Facebook\Exceptions\FacebookSDKException $e ) { // validation error
-            echo 'Facebook SDK returned an error ' . $e->getMessage;
+        } catch ( \JanuSoftware\Facebook\Exception\ResponseException $e ) { // graph error
+            echo 'Graph returned an error ' . $e->getMessage();
+        } catch ( \JanuSoftware\Facebook\Exception\SDKException $e ) { // validation error
+            echo 'Facebook SDK returned an error ' . $e->getMessage();
         }
 
         if ( !$accessToken->isLongLived() ) { // exchange short for long
             try {
                 $accessToken = $oAuth2Client->getLongLivedAccessToken( $accessToken );
-            } catch ( Facebook\Exceptions\FacebookSDKException $e ) {
+            } catch ( \JanuSoftware\Facebook\Exception\SDKException $e ) {
                 echo 'Error getting long lived access token ' . $e->getMessage();
             }
         }
