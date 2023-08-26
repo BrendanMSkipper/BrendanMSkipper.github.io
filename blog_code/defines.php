@@ -3,4 +3,4 @@
 
     define('FACEBOOK_APP_ID', '2651016275051359');
     define('FACEBOOK_APP_SECRET', '●●●●●●●●');
-    define('FACEBOOK_REDIRECT_URI', 'https://br3ndan56.github.io/blog_code/obtaining_access_token.php/');
+    define('FACEBOOK_REDIRECT_URI', 'https://brendanmskipper.github.io/blog_code/obtaining_access_token.php/');
